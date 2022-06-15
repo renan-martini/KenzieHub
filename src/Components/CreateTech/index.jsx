@@ -33,7 +33,11 @@ function CreateTech({ open, handleClose, setTechs }) {
 
   const newTech = (data) => {
     toast.promise(
-      API.post("users/techs", data).then((res) => {
+      API.post("users/techs", data, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("@khub:token") || ""}`,
+        },
+      }).then((res) => {
         API.get(`users/${user.id}`).then((res) => setTechs(res.data.techs));
         handleClose();
       }),

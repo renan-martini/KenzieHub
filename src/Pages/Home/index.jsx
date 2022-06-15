@@ -11,7 +11,6 @@ import EditTech from "../../Components/EditTech";
 
 function Home({ isLogged, setIsLogged }) {
   const user = JSON.parse(localStorage.getItem("@khub:user"));
-  console.log(user);
   const [techs, setTechs] = useState([]);
   useEffect(() => {
     API.get(`users/${user.id}`).then((res) => setTechs(res.data.techs));

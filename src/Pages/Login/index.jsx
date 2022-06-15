@@ -53,6 +53,7 @@ function Login({ isLogged, setIsLogged }) {
       }
     );
   };
+
   const history = useHistory();
 
   if (isLogged) {
