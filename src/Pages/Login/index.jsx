@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import { toast } from "react-toastify";
 import API from "../../Services/Api";
 
-function Login() {
+function Login({ isLogged, setIsLogged }) {
   const formSchema = yup.object().shape({
     email: yup
       .string()
@@ -42,7 +42,8 @@ function Login() {
         localStorage.setItem("@khub:token", res.data.token);
         localStorage.setItem("@khub:user", JSON.stringify(res.data.user));
         setTimeout(() => {
-          history.push("/dashboard");
+          setIsLogged(true);
+          history.push("/home");
         }, 1000);
       }),
       {
@@ -53,6 +54,11 @@ function Login() {
     );
   };
   const history = useHistory();
+
+  if (isLogged) {
+    history.push("/home");
+  }
+
   return (
     <LoginPage>
       <header>

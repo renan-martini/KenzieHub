@@ -9,7 +9,7 @@ import { useEffect } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import API from "../../Services/Api";
 
-function Register() {
+function Register({ isLogged }) {
   const formSchema = yup.object().shape({
     name: yup.string().required("Nome obrigatório!"),
     email: yup
@@ -29,6 +29,10 @@ function Register() {
   });
 
   const history = useHistory();
+
+  if (isLogged) {
+    history.push("/home");
+  }
 
   const {
     register,
@@ -134,7 +138,7 @@ function Register() {
           </div>
           <div>
             <label htmlFor="module">Selecionar módulo</label>
-            <select id="module" {...register("course_module")} value="1">
+            <select id="module" {...register("course_module")} defaultValue="1">
               <option value="Primeiro módulo (Introdução ao Frontend)">
                 Primeiro Módulo
               </option>

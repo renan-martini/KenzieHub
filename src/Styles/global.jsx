@@ -24,7 +24,7 @@ export const GlobalStyle = createGlobalStyle`
         font-weight: 600;
     }
 
-    p {
+    p, label {
         font-weight: 400;
     }
 `;
