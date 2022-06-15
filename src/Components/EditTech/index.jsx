@@ -32,7 +32,11 @@ function EditTech({ open, handleClose, tech, setTechs }) {
 
   const editTech = (data) => {
     toast.promise(
-      API.put(`users/techs/${tech.id}`, data).then((res) => {
+      API.put(`users/techs/${tech.id}`, data, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("@khub:token") || ""}`,
+        },
+      }).then((res) => {
         API.get(`users/${user.id}`).then((res) => setTechs(res.data.techs));
         handleClose();
       }),
@@ -46,7 +50,11 @@ function EditTech({ open, handleClose, tech, setTechs }) {
 
   const deleteTech = () => {
     toast.promise(
-      API.delete(`users/techs/${tech.id}`).then((res) => {
+      API.delete(`users/techs/${tech.id}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("@khub:token") || ""}`,
+        },
+      }).then((res) => {
         API.get(`users/${user.id}`).then((res) => setTechs(res.data.techs));
         handleClose();
       }),

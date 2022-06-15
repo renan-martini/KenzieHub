@@ -13,8 +13,8 @@ function Home({ isLogged, setIsLogged }) {
   const user = JSON.parse(localStorage.getItem("@khub:user"));
   const [techs, setTechs] = useState([]);
   useEffect(() => {
-    API.get(`users/${user.id}`).then((res) => setTechs(res.data.techs));
-  }, [user.id]);
+    API.get(`users/${user?.id}`).then((res) => setTechs(res.data.techs));
+  }, [user?.id]);
   const history = useHistory();
   const logout = () => {
     const resolveAfter = new Promise((resolve) =>
